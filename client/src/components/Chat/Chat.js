@@ -5,6 +5,7 @@ import { Avatar, IconButton } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SearchOutlined from "@material-ui/icons/Search";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
+import Picker from "emoji-picker-react";
 import SentimentSatisfiedOutlinedIcon from "@material-ui/icons/SentimentSatisfiedOutlined";
 // import SendOutlinedIcon from "@material-ui/icons/SendOutlined";
 import DoneAllOutlinedIcon from "@material-ui/icons/DoneAllOutlined";
@@ -15,6 +16,16 @@ let counter = 0;
 
 function Chat({ messages }) {
   const [input, setInput] = useState("");
+  const [chosenEmoji, setChosenEmoji] = useState(null);
+
+  const onEmojiClick = (event, emojiObject) => {
+    setChosenEmoji(emojiObject);
+    setInput(input + emojiObject.emoji);
+  };
+
+  const toggleClass = () => {
+    document.querySelector("");
+  };
 
   const sendMessage = async (event) => {
     event.preventDefault();
@@ -67,7 +78,11 @@ function Chat({ messages }) {
         ))}
       </div>
       <div className="chat__footer">
-        <SentimentSatisfiedOutlinedIcon />
+        <div className="emoji-picker hidden">
+          <Picker id="picker" onEmojiClick={onEmojiClick} />
+        </div>
+        <SentimentSatisfiedOutlinedIcon onClick={toggleClass} />
+
         <form>
           <input
             value={input}
